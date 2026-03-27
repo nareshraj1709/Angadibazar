@@ -8,6 +8,7 @@ import {
   StyleSheet,
   RefreshControl,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import * as Location from 'expo-location';
 import { supabase } from '../lib/supabase';
@@ -61,11 +62,33 @@ export default function HomeScreen({ navigation }) {
   useEffect(() => {
     (async () => {
       try {
-        const { status } = await Location.requestForegroundPermissionsAsync();
-        if (status === 'granted') {
+        const { status: existing } = await Location.getForegroundPermissionsAsync();
+        if (existing === 'granted') {
           const loc = await Location.getCurrentPositionAsync({});
           setUserLocation(loc.coords);
+          return;
         }
+
+        // Show rationale before requesting permission (Play Store requirement)
+        Alert.alert(
+          lang === 'te' ? 'స్థానం అనుమతి' : 'Location Permission',
+          lang === 'te'
+            ? 'మీ దగ్గర లిస్టింగులు చూపించడానికి మరియు అమ్మకందారుల దూరం లెక్కించడానికి AngadiBazarకి మీ స్థానం అవసరం. మీరు నిరాకరించినా యాప్ పని చేస్తుంది.'
+            : 'AngadiBazar uses your location to show nearby listings and calculate distance to sellers. The app works without it if you decline.',
+          [
+            { text: lang === 'te' ? 'వద్దు' : 'Not Now', style: 'cancel' },
+            {
+              text: lang === 'te' ? 'అనుమతించు' : 'Allow',
+              onPress: async () => {
+                const { status } = await Location.requestForegroundPermissionsAsync();
+                if (status === 'granted') {
+                  const loc = await Location.getCurrentPositionAsync({});
+                  setUserLocation(loc.coords);
+                }
+              },
+            },
+          ]
+        );
       } catch (e) {
         // Location denied — proceed without distance
       }

@@ -242,6 +242,17 @@ export default function AuthScreen({ navigation }) {
               </TouchableOpacity>
             </>
           )}
+
+          <TouchableOpacity
+            style={styles.privacyLink}
+            onPress={() => navigation.navigate('PrivacyPolicy')}
+          >
+            <Text style={styles.privacyText}>
+              {lang === 'te'
+                ? 'కొనసాగించడం ద్వారా, మీరు మా గోప్యతా విధానాన్ని అంగీకరిస్తున్నారు'
+                : 'By continuing, you agree to our Privacy Policy'}
+            </Text>
+          </TouchableOpacity>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>
@@ -352,5 +363,16 @@ const styles = StyleSheet.create({
     color: COLORS.saffron,
     fontSize: 14,
     fontWeight: '600',
+  },
+  privacyLink: {
+    alignItems: 'center',
+    marginTop: 32,
+    paddingBottom: 20,
+  },
+  privacyText: {
+    color: COLORS.muted,
+    fontSize: 12,
+    textAlign: 'center',
+    textDecorationLine: 'underline',
   },
 });

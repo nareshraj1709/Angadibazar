@@ -269,9 +269,29 @@ export default function ProfileScreen({ navigation }) {
           <Text style={styles.emptyText}>{t('noListings')}</Text>
         }
         ListFooterComponent={
-          <TouchableOpacity style={styles.signOutButton} onPress={signOut}>
-            <Text style={styles.signOutText}>{t('signOut')}</Text>
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity
+              style={styles.linkButton}
+              onPress={() => navigation.navigate('PrivacyPolicy')}
+            >
+              <Text style={styles.linkText}>
+                {lang === 'te' ? 'గోప్యతా విధానం' : 'Privacy Policy'}
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.signOutButton} onPress={signOut}>
+              <Text style={styles.signOutText}>{t('signOut')}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.deleteAccountButton}
+              onPress={() => navigation.navigate('DeleteAccount')}
+            >
+              <Text style={styles.deleteAccountText}>
+                {lang === 'te' ? 'ఖాతా తొలగించు' : 'Delete Account'}
+              </Text>
+            </TouchableOpacity>
+          </View>
         }
       />
     </View>
@@ -457,5 +477,26 @@ const styles = StyleSheet.create({
     color: '#d44',
     fontSize: 16,
     fontWeight: '700',
+  },
+  linkButton: {
+    alignItems: 'center',
+    paddingVertical: 14,
+    marginTop: 12,
+  },
+  linkText: {
+    color: COLORS.saffron,
+    fontSize: 15,
+    fontWeight: '600',
+  },
+  deleteAccountButton: {
+    alignItems: 'center',
+    paddingVertical: 14,
+    marginTop: 8,
+    marginBottom: 20,
+  },
+  deleteAccountText: {
+    color: '#d44',
+    fontSize: 14,
+    fontWeight: '500',
   },
 });

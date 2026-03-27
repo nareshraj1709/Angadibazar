@@ -11,6 +11,8 @@ import HomeScreen from './src/screens/HomeScreen';
 import ListingDetailScreen from './src/screens/ListingDetailScreen';
 import SellScreen from './src/screens/SellScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
+import PrivacyPolicyScreen from './src/screens/PrivacyPolicyScreen';
+import DeleteAccountScreen from './src/screens/DeleteAccountScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -109,6 +111,16 @@ export default function App() {
         <Stack.Screen
           name="ListingDetail"
           component={ListingDetailScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="PrivacyPolicy"
+          component={PrivacyPolicyScreen}
+          options={{ animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="DeleteAccount"
+          component={DeleteAccountScreen}
           options={{ animation: 'slide_from_right' }}
         />
       </Stack.Navigator>

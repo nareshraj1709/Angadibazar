@@ -52,6 +52,21 @@ export default function SellScreen({ navigation }) {
       return;
     }
 
+    // Check existing permission first
+    const { status: existing } = await ImagePicker.getMediaLibraryPermissionsAsync();
+    if (existing !== 'granted') {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert(
+          lang === 'te' ? 'అనుమతి అవసరం' : 'Permission Required',
+          lang === 'te'
+            ? 'మీ లిస్టింగ్‌కి ఫోటోలు జోడించడానికి ఫోటో లైబ్రరీ యాక్సెస్ అవసరం. దయచేసి సెట్టింగ్స్‌లో అనుమతించండి.'
+            : 'Photo library access is needed to add images to your listing. Please enable it in Settings.',
+        );
+        return;
+      }
+    }
+
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
