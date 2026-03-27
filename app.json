@@ -1,0 +1,65 @@
+{
+  "expo": {
+    "name": "AngadiBazar",
+    "slug": "angadibazar",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#fdf6ec"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#e07b39"
+      },
+      "package": "com.angadibazar.app",
+      "versionCode": 1,
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA"
+      ],
+      "blockedPermissions": [
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "angadibazar"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "AngadiBazar uses your location to show nearby listings and calculate distance to sellers.",
+          "locationWhenInUsePermission": "AngadiBazar uses your location to show nearby listings and calculate distance to sellers."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "AngadiBazar needs access to your photos so you can add product images to your listings.",
+          "cameraPermission": "AngadiBazar needs camera access so you can take photos of items you want to sell."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "your-eas-project-id"
+      }
+    }
+  }
+}
