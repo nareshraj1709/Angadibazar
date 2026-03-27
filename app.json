@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "AngadiBazar",
+    "slug": "angadibazar",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "backgroundColor": "#fdf6ec"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#e07b39"
+      },
+      "package": "com.angadibazar.app",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "READ_EXTERNAL_STORAGE",
+        "CAMERA"
+      ]
+    },
+    "plugins": [
+      "expo-location",
+      "expo-image-picker"
+    ]
+  }
+}
